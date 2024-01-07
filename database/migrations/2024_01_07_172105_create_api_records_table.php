@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('importcsvs', function (Blueprint $table) {
+        Schema::create('api_records', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
+            $table->string('api');
+            $table->string('description');
+            $table->string('auth');
+            $table->string('https');
+            $table->string('cors');
+            $table->string('link');
+            $table->string('category');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('importcsvs');
+        Schema::dropIfExists('api_records');
     }
 };

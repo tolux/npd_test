@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use App\Events\SendAdminMail;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Event ;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -23,12 +25,12 @@ class Handler extends ExceptionHandler
         if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
             return redirect()->route('404');
         }
-        // elseif ($this->isHttpException($exception)) {
-        //     return $this->renderHttpException($exception);
-        // }
-        // elseif ($exception instanceof \ErrorException) {
-        //     return redirect()->route('500');
-        // }
+
+        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\HttpException && $exception->getStatusCode() == 500) {
+            // Handle the simulated fatal error here
+            SendAdminMail::dispatch('a fatal error occurred') ;
+            // return redirect()->route('404');
+        }
 
         return parent::render($request, $exception);
     }

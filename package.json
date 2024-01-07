@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "init_app": "composer install && npm i && php artisan key:generate && php artisan migrate &&  php artisan db:seed --class=InitSeeder"
+        "init_app": "composer install && npm i && php artisan key:generate && php artisan migrate &&  php artisan db:seed --class=InitSeeder && php artisan app:call-api-records"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.0",

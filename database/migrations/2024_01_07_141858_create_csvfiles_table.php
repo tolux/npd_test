@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('apirecords', function (Blueprint $table) {
+        Schema::create('csvfiles', function (Blueprint $table) {
             $table->id();
-            $table->string('api');
-            $table->string('description');
-            $table->string('auth');
-            $table->string('https');
-            $table->string('cors');
-            $table->string('link');
-            $table->string('category');
-            
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('address');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('apirecords');
+        Schema::dropIfExists('csvfiles');
     }
 };
